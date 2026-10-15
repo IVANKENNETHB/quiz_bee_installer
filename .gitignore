@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Tauri build outputs
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

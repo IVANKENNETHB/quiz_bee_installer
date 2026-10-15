@@ -1,0 +1,770 @@
+[
+  {
+    "id": 1,
+    "type": "multiple-choice",
+    "text": "What is the primary purpose of a firewall?",
+    "options": [
+      "Filter network traffic using security rules",
+      "Repair damaged hardware",
+      "Create user passwords automatically",
+      "Increase storage capacity"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "A firewall inspects and filters network traffic based on configured security rules."
+  },
+  {
+    "id": 2,
+    "type": "multiple-choice",
+    "text": "What is phishing?",
+    "options": [
+      "Compressing a file",
+      "Tricking people into revealing sensitive information",
+      "Updating a device",
+      "Testing network speed"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "Phishing uses deceptive messages or sites to trick people into giving up sensitive information."
+  },
+  {
+    "id": 3,
+    "type": "multiple-choice",
+    "text": "Which type of malware can encrypt files and demand payment?",
+    "options": [
+      "Adware",
+      "Spyware",
+      "Ransomware",
+      "Cookie"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "Ransomware encrypts files and demands payment, often in cryptocurrency, for the key."
+  },
+  {
+    "id": 4,
+    "type": "multiple-choice",
+    "text": "Which principle limits users to only the permissions needed for their work?",
+    "options": [
+      "Open access",
+      "Full control",
+      "Public access",
+      "Least privilege"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "Least privilege grants only the access required to perform assigned tasks."
+  },
+  {
+    "id": 5,
+    "type": "multiple-choice",
+    "text": "What does the CIA triad stand for in information security?",
+    "options": [
+      "Control, Internet, Access",
+      "Confidentiality, Integrity, Availability",
+      "Cybercrime, Investigation, Analysis",
+      "Credentials, Identity, Authorization"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "The CIA triad is Confidentiality, Integrity, and Availability."
+  },
+  {
+    "id": 6,
+    "type": "multiple-choice",
+    "text": "Which protocol is commonly used for encrypted remote command-line access?",
+    "options": [
+      "Telnet",
+      "FTP",
+      "SSH",
+      "HTTP"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "SSH (Secure Shell) encrypts remote command-line sessions; Telnet and FTP are unencrypted."
+  },
+  {
+    "id": 7,
+    "type": "multiple-choice",
+    "text": "What is the main goal of a DDoS attack?",
+    "options": [
+      "Make a service unavailable by overwhelming its resources",
+      "Improve server performance",
+      "Create secure backups",
+      "Encrypt a hard drive for legitimate protection"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "A Distributed Denial-of-Service attack floods a service from many sources to disrupt availability."
+  },
+  {
+    "id": 8,
+    "type": "multiple-choice",
+    "text": "Which is the strongest password practice?",
+    "options": [
+      "Use your birthday",
+      "Reuse one password everywhere",
+      "Share passwords with friends",
+      "Use a long, unique password for each account"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "Long, unique passwords per account reduce the impact of any single breach."
+  },
+  {
+    "id": 9,
+    "type": "multiple-choice",
+    "text": "What is multi-factor authentication (MFA)?",
+    "options": [
+      "Using multiple usernames",
+      "Using two or more different types of verification factors",
+      "Logging in from several devices",
+      "Changing a password every hour"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "MFA combines two or more different factor types: something you know, have, or are."
+  },
+  {
+    "id": 10,
+    "type": "multiple-choice",
+    "text": "What does HTTPS help protect?",
+    "options": [
+      "All content on a device from malware",
+      "A user from every online scam",
+      "Data exchanged with a website while in transit",
+      "A computer from physical theft"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "HTTPS encrypts data in transit between the browser and the website."
+  },
+  {
+    "id": 11,
+    "type": "multiple-choice",
+    "text": "What is a zero-day vulnerability?",
+    "options": [
+      "A flaw exploited before an effective fix is available",
+      "A vulnerability with no security impact",
+      "A fully patched flaw that cannot be exploited",
+      "A type of backup"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "A zero-day is exploited before the vendor has released an effective fix."
+  },
+  {
+    "id": 12,
+    "type": "multiple-choice",
+    "text": "Which activity is an example of social engineering?",
+    "options": [
+      "Applying a software patch",
+      "Encrypting a disk",
+      "Running a scheduled backup",
+      "Impersonating IT support to steal a password"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "Social engineering manipulates people, for example by impersonating IT support."
+  },
+  {
+    "id": 13,
+    "type": "multiple-choice",
+    "text": "What is the main purpose of encryption?",
+    "options": [
+      "Make computers run faster",
+      "Make data unreadable without the appropriate key or method",
+      "Remove all malware",
+      "Guarantee that a website is legitimate"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "Encryption makes data unreadable to anyone without the correct key or method."
+  },
+  {
+    "id": 14,
+    "type": "multiple-choice",
+    "text": "What is a vulnerability in cybersecurity?",
+    "options": [
+      "A security certificate",
+      "A backup schedule",
+      "A weakness that could be exploited",
+      "A type of firewall"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "A vulnerability is a weakness that an attacker could exploit."
+  },
+  {
+    "id": 15,
+    "type": "multiple-choice",
+    "text": "What does a VPN commonly provide when configured correctly?",
+    "options": [
+      "An encrypted connection to a VPN endpoint",
+      "Guaranteed total anonymity",
+      "Automatic removal of every virus",
+      "A guarantee that all websites are safe"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "A VPN encrypts traffic between the device and a VPN endpoint; it does not guarantee anonymity."
+  },
+  {
+    "id": 16,
+    "type": "multiple-choice",
+    "text": "What is the purpose of a security patch?",
+    "options": [
+      "Add advertisements",
+      "Disable account protection",
+      "Replace a computer's hardware",
+      "Fix bugs or security weaknesses"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "Patches fix bugs and security weaknesses in software."
+  },
+  {
+    "id": 17,
+    "type": "multiple-choice",
+    "text": "Which malware is designed to secretly monitor activity or collect information?",
+    "options": [
+      "Firewall",
+      "Spyware",
+      "Patch",
+      "Backup utility"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "Spyware secretly monitors activity and collects information."
+  },
+  {
+    "id": 18,
+    "type": "multiple-choice",
+    "text": "What is a brute-force attack?",
+    "options": [
+      "Physically damaging a server",
+      "Encrypting a backup",
+      "Trying many possible passwords or keys until one works",
+      "Installing an authorized update"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "A brute-force attack systematically tries many passwords or keys until one works."
+  },
+  {
+    "id": 19,
+    "type": "multiple-choice",
+    "text": "What is the safest action when you receive a suspicious email attachment?",
+    "options": [
+      "Avoid opening it and verify or report the message",
+      "Open it immediately",
+      "Forward it to everyone",
+      "Disable antivirus first"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "Never open suspicious attachments; verify the sender and report the message."
+  },
+  {
+    "id": 20,
+    "type": "multiple-choice",
+    "text": "Why should important files be backed up regularly?",
+    "options": [
+      "To make passwords unnecessary",
+      "To stop all phishing attempts",
+      "To increase screen resolution",
+      "To recover data after loss, damage, or some attacks"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "Backups allow recovery after data loss, hardware failure, or attacks such as ransomware."
+  },
+  {
+    "id": 21,
+    "type": "multiple-choice",
+    "text": "Which security property means data has not been improperly changed?",
+    "options": [
+      "Availability",
+      "Integrity",
+      "Confidentiality",
+      "Scalability"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "Integrity ensures data has not been improperly altered."
+  },
+  {
+    "id": 22,
+    "type": "multiple-choice",
+    "text": "Which device commonly forwards traffic between different networks?",
+    "options": [
+      "Keyboard",
+      "Webcam",
+      "Router",
+      "Printer"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "A router forwards traffic between different networks."
+  },
+  {
+    "id": 23,
+    "type": "multiple-choice",
+    "text": "What is the role of antivirus or endpoint protection software?",
+    "options": [
+      "Detect, block, or help remove malicious software",
+      "Guarantee that no attack can succeed",
+      "Replace all network equipment",
+      "Make every password unique automatically"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "Endpoint protection detects, blocks, and helps remove malicious software; it is not infallible."
+  },
+  {
+    "id": 24,
+    "type": "multiple-choice",
+    "text": "What is ethical hacking?",
+    "options": [
+      "Accessing any system without permission",
+      "Stealing data to prove a weakness",
+      "Disabling security controls for fun",
+      "Authorized testing to identify security weaknesses"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "Ethical hacking is authorized testing performed with permission to find weaknesses."
+  },
+  {
+    "id": 25,
+    "type": "scramble",
+    "text": "A fraudulent message or website designed to trick someone into revealing sensitive information.",
+    "options": null,
+    "correctAnswer": "Phishing",
+    "acceptedAnswers": [
+      "phishing",
+      "phishing attack",
+      "phishing scam"
+    ],
+    "explanation": "Phishing uses fraudulent messages or sites to steal sensitive information."
+  },
+  {
+    "id": 26,
+    "type": "scramble",
+    "text": "Malicious software that can encrypt files and demand payment.",
+    "options": null,
+    "correctAnswer": "Ransomware",
+    "acceptedAnswers": [
+      "ransomware",
+      "ransom ware"
+    ],
+    "explanation": "Ransomware encrypts files and demands payment for the decryption key."
+  },
+  {
+    "id": 27,
+    "type": "scramble",
+    "text": "A security system that filters network traffic according to rules.",
+    "options": null,
+    "correctAnswer": "Firewall",
+    "acceptedAnswers": [
+      "firewall",
+      "fire wall"
+    ],
+    "explanation": "A firewall filters traffic based on predefined security rules."
+  },
+  {
+    "id": 28,
+    "type": "scramble",
+    "text": "The process of converting readable data into a protected form using cryptographic methods.",
+    "options": null,
+    "correctAnswer": "Encryption",
+    "acceptedAnswers": [
+      "encryption",
+      "encrypt",
+      "data encryption"
+    ],
+    "explanation": "Encryption converts readable data into a protected form using cryptographic methods."
+  },
+  {
+    "id": 29,
+    "type": "scramble",
+    "text": "A small hardware or software device used as an additional authentication factor beyond a password, such as a key fob or app-generated code.",
+    "options": null,
+    "correctAnswer": "Token",
+    "acceptedAnswers": [
+      "token",
+      "security token",
+      "auth token",
+      "authentication token"
+    ],
+    "explanation": "A token provides an additional authentication factor beyond a password."
+  },
+  {
+    "id": 30,
+    "type": "scramble",
+    "text": "Software or code specifically written to take advantage of a security flaw in a system or application.",
+    "options": null,
+    "correctAnswer": "Exploit",
+    "acceptedAnswers": [
+      "exploit",
+      "exploits",
+      "software exploit",
+      "security exploit"
+    ],
+    "explanation": "An exploit leverages a vulnerability to execute unintended behavior on a target system."
+  },
+  {
+    "id": 31,
+    "type": "scramble",
+    "text": "A type of malware that can copy itself and spread to other devices on a network without needing to attach itself to existing software.",
+    "options": null,
+    "correctAnswer": "Worm",
+    "acceptedAnswers": [
+      "worm",
+      "computer worm",
+      "network worm"
+    ],
+    "explanation": "A worm is self-replicating malware that spreads independently across networks."
+  },
+  {
+    "id": 32,
+    "type": "scramble",
+    "text": "A form of malware that misleads users of its true intent by masquerading as a legitimate or desirable program.",
+    "options": null,
+    "correctAnswer": "Trojan",
+    "acceptedAnswers": [
+      "trojan",
+      "trojan horse"
+    ],
+    "explanation": "A trojan horse disguises malware as legitimate software to trick users."
+  },
+  {
+    "id": 33,
+    "type": "scramble",
+    "text": "A collection of compromised internet-connected devices that are controlled remotely by an attacker without the owners' awareness.",
+    "options": null,
+    "correctAnswer": "Botnet",
+    "acceptedAnswers": [
+      "botnet",
+      "bot net",
+      "zombie network",
+      "bot network"
+    ],
+    "explanation": "A botnet is a network of compromised devices remotely controlled by an attacker."
+  },
+  {
+    "id": 34,
+    "type": "scramble",
+    "text": "The security property concerned with keeping data accurate and protected from unauthorized modification.",
+    "options": null,
+    "correctAnswer": "Integrity",
+    "acceptedAnswers": [
+      "integrity",
+      "data integrity"
+    ],
+    "explanation": "Integrity keeps data accurate and protected from unauthorized modification."
+  },
+  {
+    "id": 35,
+    "type": "scramble",
+    "text": "The portion of a piece of malicious code that is designed to perform the actual harmful action on the target system.",
+    "options": null,
+    "correctAnswer": "Payload",
+    "acceptedAnswers": [
+      "payload",
+      "malware payload"
+    ],
+    "explanation": "A payload is the active part of malware that carries out the intended malicious effect."
+  },
+  {
+    "id": 36,
+    "type": "scramble",
+    "text": "A hidden method of bypassing normal authentication or security controls in a computer system.",
+    "options": null,
+    "correctAnswer": "Backdoor",
+    "acceptedAnswers": [
+      "backdoor",
+      "back door",
+      "trapdoor"
+    ],
+    "explanation": "A backdoor allows unauthorized access by bypassing normal authentication."
+  },
+  {
+    "id": 37,
+    "type": "scramble",
+    "text": "A device, software, or program that monitors and captures data packets traveling across a computer network.",
+    "options": null,
+    "correctAnswer": "Sniffer",
+    "acceptedAnswers": [
+      "sniffer",
+      "packet sniffer",
+      "network sniffer"
+    ],
+    "explanation": "A sniffer captures and analyzes network traffic, often without the network's knowledge."
+  },
+  {
+    "id": 38,
+    "type": "scramble",
+    "text": "The act of falsifying communication data, such as a sender address, to deceive and manipulate recipients.",
+    "options": null,
+    "correctAnswer": "Spoofing",
+    "acceptedAnswers": [
+      "spoofing",
+      "spoof",
+      "email spoofing",
+      "caller id spoofing"
+    ],
+    "explanation": "Spoofing is the forgery of data or identities to deceive recipients or systems."
+  },
+  {
+    "id": 39,
+    "type": "scramble",
+    "text": "A program or code designed to harm, disrupt, spy on, or gain unauthorized access to systems.",
+    "options": null,
+    "correctAnswer": "Malware",
+    "acceptedAnswers": [
+      "malware",
+      "malicious software",
+      "malicious code"
+    ],
+    "explanation": "Malware is software designed to harm, disrupt, spy, or gain unauthorized access."
+  },
+  {
+    "id": 40,
+    "type": "scramble",
+    "text": "A type of malware that secretly records a user's keystrokes.",
+    "options": null,
+    "correctAnswer": "Keylogger",
+    "acceptedAnswers": [
+      "keylogger",
+      "key logger",
+      "keystroke logger",
+      "keylogging"
+    ],
+    "explanation": "A keylogger secretly records a user's keystrokes."
+  },
+  {
+    "id": 1001,
+    "type": "multiple-choice",
+    "text": "What does DNS do on a network?",
+    "options": [
+      "Translates domain names into IP addresses",
+      "Encrypts files stored on the host",
+      "Blocks phishing emails automatically",
+      "Assigns permissions to user accounts"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "DNS resolves human-readable domain names into the IP addresses computers use to connect."
+  },
+  {
+    "id": 1002,
+    "type": "multiple-choice",
+    "text": "Which attack inserts malicious SQL statements through unvalidated user input?",
+    "options": [
+      "Cross-site scripting",
+      "SQL injection",
+      "Session hijacking",
+      "Brute force"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "SQL injection inserts malicious SQL through unsanitized input to read or alter a database."
+  },
+  {
+    "id": 1003,
+    "type": "multiple-choice",
+    "text": "Which vulnerability lets attackers inject malicious scripts that run in other users' browsers?",
+    "options": [
+      "Buffer overflow",
+      "SQL injection",
+      "Cross-site scripting",
+      "Directory traversal"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "Cross-site scripting (XSS) injects client-side scripts that execute in a victim's browser."
+  },
+  {
+    "id": 1004,
+    "type": "multiple-choice",
+    "text": "Which type of malware hides itself and other software to maintain privileged access?",
+    "options": [
+      "Adware",
+      "Worm",
+      "Trojan",
+      "Rootkit"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "A rootkit conceals its presence and that of other malware to keep persistent privileged access."
+  },
+  {
+    "id": 1005,
+    "type": "multiple-choice",
+    "text": "Which software automatically displays unwanted advertisements and can redirect a browser?",
+    "options": [
+      "Adware",
+      "Ransomware",
+      "Rootkit",
+      "Keylogger"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "Adware automatically shows unwanted ads and may redirect browsing to advertising sites."
+  },
+  {
+    "id": 1006,
+    "type": "multiple-choice",
+    "text": "Which attack secretly intercepts and possibly alters communication between two parties?",
+    "options": [
+      "Phishing",
+      "Man-in-the-middle",
+      "Denial of service",
+      "Privilege escalation"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "A man-in-the-middle attack secretly relays or alters traffic between two parties who believe they are talking directly."
+  },
+  {
+    "id": 1007,
+    "type": "multiple-choice",
+    "text": "Which technique converts data into a fixed-length value that cannot be reversed to the original?",
+    "options": [
+      "Encryption",
+      "Compression",
+      "Hashing",
+      "Encoding"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "Hashing produces a fixed-length digest that is effectively irreversible, unlike encryption."
+  },
+  {
+    "id": 1008,
+    "type": "multiple-choice",
+    "text": "What is the primary purpose of a digital signature?",
+    "options": [
+      "Compress a message for storage",
+      "Encrypt an entire disk",
+      "Hide a file's location",
+      "Verify authenticity and integrity"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "A digital signature verifies the sender's authenticity and confirms the message was not altered."
+  },
+  {
+    "id": 1009,
+    "type": "multiple-choice",
+    "text": "Which entity issues and signs digital certificates to vouch for a website's identity?",
+    "options": [
+      "Certificate authority",
+      "Domain registrar",
+      "Internet service provider",
+      "Firewall"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "A certificate authority (CA) issues and signs certificates that bind identities to public keys."
+  },
+  {
+    "id": 1010,
+    "type": "multiple-choice",
+    "text": "What is the main benefit of using a password manager?",
+    "options": [
+      "It makes every password shorter",
+      "It stores unique strong passwords securely",
+      "It removes the need for multi-factor authentication",
+      "It shares passwords with anyone who asks"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "A password manager securely stores unique, strong passwords so every account can differ."
+  },
+  {
+    "id": 1011,
+    "type": "multiple-choice",
+    "text": "Which authentication factor uses fingerprints or facial features?",
+    "options": [
+      "Something you know",
+      "Something you have",
+      "Something you are",
+      "Somewhere you are"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "Biometrics authenticate using something you are, such as a fingerprint or face."
+  },
+  {
+    "id": 1012,
+    "type": "multiple-choice",
+    "text": "Which Wi-Fi security standard is the most current and secure?",
+    "options": [
+      "WEP",
+      "WPA",
+      "WPA2",
+      "WPA3"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "WPA3 is the newest Wi-Fi security standard and improves on WPA2."
+  },
+  {
+    "id": 1013,
+    "type": "multiple-choice",
+    "text": "What does the 3-2-1 backup rule recommend?",
+    "options": [
+      "Keep 3 copies on 2 media with 1 offsite",
+      "Keep 3 passwords and 2 devices",
+      "Keep 3 admins and 2 servers",
+      "Keep 3 firewalls and 2 logs"
+    ],
+    "correctAnswer": 0,
+    "acceptedAnswers": [],
+    "explanation": "The 3-2-1 rule keeps three copies of data, on two media types, with one copy offsite."
+  },
+  {
+    "id": 1014,
+    "type": "multiple-choice",
+    "text": "What is shoulder surfing?",
+    "options": [
+      "Scanning a network for active hosts",
+      "Watching someone enter sensitive information",
+      "Clicking a fake advertisement",
+      "Flooding a server with traffic"
+    ],
+    "correctAnswer": 1,
+    "acceptedAnswers": [],
+    "explanation": "Shoulder surfing is directly observing someone to capture sensitive information such as PINs."
+  },
+  {
+    "id": 1015,
+    "type": "multiple-choice",
+    "text": "What is spear phishing?",
+    "options": [
+      "Any mass email campaign",
+      "A network scanning technique",
+      "A targeted phishing attack on a specific person",
+      "A type of ransomware"
+    ],
+    "correctAnswer": 2,
+    "acceptedAnswers": [],
+    "explanation": "Spear phishing is a targeted phishing attack tailored to a specific individual or group."
+  },
+  {
+    "id": 1016,
+    "type": "multiple-choice",
+    "text": "Why should you change a router's default administrator password?",
+    "options": [
+      "To speed up the Wi-Fi connection",
+      "To hide the network name",
+      "To extend the wireless range",
+      "Defaults are publicly known and easily exploited"
+    ],
+    "correctAnswer": 3,
+    "acceptedAnswers": [],
+    "explanation": "Default router credentials are publicly documented, so changing them prevents unauthorized access."
+  }
+]

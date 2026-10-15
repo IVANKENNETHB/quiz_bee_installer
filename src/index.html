@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cybersecurity Quiz Bee - a multiple choice and scramble practice quiz." />
+  <meta name="theme-color" content="#041021" />
+  <title>Cybersecurity Quiz Bee</title>
+  <link rel="icon" href="assets/icon.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <audio id="bgm" src="assets/music/a-like-supreme.mp3" loop preload="metadata"></audio>
+  <div class="app-shell">
+    <header class="app-header">
+      <img class="app-logo" src="assets/icon.png" alt="Cybersecurity Quiz Bee logo" />
+      <div class="app-brand">
+        <h1 class="app-title">Cybersecurity Quiz Bee</h1>
+        <p class="app-tagline">Practice set &middot; Multiple choice &amp; scramble</p>
+      </div>
+      <button type="button" class="icon-btn" id="settings-open" data-action="open-settings"
+        aria-label="Open settings" title="Settings">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+          stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.2" />
+          <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.09a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z" />
+        </svg>
+      </button>
+    </header>
+
+    <main id="screen-container">
+      <!-- ============================ HOME ============================ -->
+      <section class="screen" id="screen-home" data-screen="home">
+        <div class="home-hero" role="img" aria-label="Byte Builders animated banner">
+          <div class="home-hero-overlay">
+            <h2 class="home-hero-title">Cybersecurity Quiz Bee</h2>
+            <p class="home-hero-sub">Multiple choice &amp; scramble &middot; 56-question practice set</p>
+          </div>
+        </div>
+        <div class="home-grid">
+          <div class="panel setup-panel">
+            <h2>Quiz Setup</h2>
+
+             <div class="field">
+              <span class="field-label">Mode</span>
+              <div class="option-group" id="mode-group">
+                <label class="option-chip">
+                  <input type="radio" name="mode" value="practice" checked />
+                  <span>Practice (solo)</span>
+                </label>
+                <label class="option-chip">
+                  <input type="radio" name="mode" value="quizmaster" />
+                  <span>Quizmaster / Teams</span>
+                </label>
+              </div>
+              <p class="field-help" id="mode-help">Practice is solo and self-scored. Quizmaster goes to a team lobby where you add teams before starting.</p>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Level</span>
+              <div class="option-group" id="level-group">
+                <label class="option-chip">
+                  <input type="radio" name="level" value="normal" checked />
+                  <span>Normal</span>
+                </label>
+                <label class="option-chip">
+                  <input type="radio" name="level" value="advanced" />
+                  <span>Advanced</span>
+                </label>
+              </div>
+              <p class="field-help" id="level-help">Normal: multiple choice only. Advanced: multiple choice and scramble.</p>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Number of questions</span>
+              <div class="option-group" id="count-group">
+                <label class="option-chip count-option" data-count="10">
+                  <input type="radio" name="count" value="10" />
+                  <span>10</span>
+                </label>
+                <label class="option-chip count-option" data-count="20">
+                  <input type="radio" name="count" value="20" />
+                  <span>20</span>
+                </label>
+                <label class="option-chip count-option" data-count="30">
+                  <input type="radio" name="count" value="30" />
+                  <span>30</span>
+                </label>
+                <label class="option-chip count-option" data-count="40">
+                  <input type="radio" name="count" value="40" checked />
+                  <span>40</span>
+                </label>
+                <label class="option-chip count-option" data-count="50">
+                  <input type="radio" name="count" value="50" />
+                  <span>50</span>
+                </label>
+                <label class="option-chip count-option" id="count-all-option">
+                  <input type="radio" name="count" value="all" />
+                  <span id="count-all-label">All</span>
+                </label>
+              </div>
+              <p class="field-help" id="count-help">The number of questions available depends on your question bank size.</p>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Question order</span>
+              <div class="option-group">
+                <label class="option-chip">
+                  <input type="radio" name="order" value="random" checked />
+                  <span>Randomized</span>
+                </label>
+                <label class="option-chip">
+                  <input type="radio" name="order" value="original" />
+                  <span>Original order</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Timer per question</span>
+              <div class="option-group">
+                <label class="option-chip">
+                  <input type="radio" name="timer" value="0" checked />
+                  <span>Off</span>
+                </label>
+                <label class="option-chip">
+                  <input type="radio" name="timer" value="15" />
+                  <span>15s</span>
+                </label>
+                <label class="option-chip">
+                  <input type="radio" name="timer" value="30" />
+                  <span>30s</span>
+                </label>
+                <label class="option-chip">
+                  <input type="radio" name="timer" value="60" />
+                  <span>60s</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-large" id="start-btn" data-action="start">Start Quiz</button>
+          </div>
+
+          <div class="panel info-panel">
+            <h2>Question Bank</h2>
+            <ul class="bank-stats">
+              <li><span>Total questions</span><strong id="bank-total">0</strong></li>
+              <li><span>Multiple choice</span><strong id="bank-mc">0</strong></li>
+              <li><span>Scramble</span><strong id="bank-id">0</strong></li>
+            </ul>
+            <p class="hint">Questions are drawn at random with no duplicates. The original question bank is never modified.</p>
+
+            <div class="import-tools">
+              <span class="field-label">Import questions</span>
+              <p class="hint">Add questions from a <strong>.json</strong>, <strong>.csv</strong> or <strong>.txt</strong> file. Imported questions are saved in this browser and added on top of the built-in bank.</p>
+              <input type="file" id="import-file" accept=".json,.csv,.txt,application/json,text/csv,text/plain" hidden />
+              <div class="import-buttons">
+                <button type="button" class="btn btn-primary" data-action="import-file">Choose File</button>
+                <button type="button" class="btn" data-action="download-template">Download Template</button>
+                <button type="button" class="btn btn-danger-outline" data-action="clear-imported">Clear Imported</button>
+              </div>
+              <p class="import-status" id="import-status" hidden></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ LOBBY ============================ -->
+      <section class="screen" id="screen-lobby" data-screen="lobby" hidden>
+        <div class="lobby-grid">
+          <div class="panel teams-panel" id="teams-panel">
+            <h2>Teams</h2>
+            <p class="hint">Add one or more teams before starting the quiz.</p>
+            <div class="team-input-row">
+              <input type="text" id="team-name-input" placeholder="Team name" maxlength="24" autocomplete="off" />
+              <button type="button" class="btn" data-action="add-team">Add</button>
+            </div>
+            <p class="team-error" id="team-error" hidden></p>
+            <ul class="team-list" id="team-list"></ul>
+          </div>
+
+          <aside class="panel lobby-side">
+            <h3>Leaderboard</h3>
+            <ul class="score-list" id="lobby-score-list"></ul>
+            <div class="award-panel" id="lobby-award-panel">
+              <label for="lobby-award-team">Answering team</label>
+              <select id="lobby-award-team"></select>
+              <p class="hint">Choose the team that will answer the quiz. Scores are kept as each team's best result.</p>
+            </div>
+            <p class="hint" id="lobby-start-hint">Add at least one team to start.</p>
+            <div class="lobby-actions">
+              <button type="button" class="btn btn-primary btn-large" id="lobby-start-btn" data-action="start" disabled>Start Quiz</button>
+              <button type="button" class="btn btn-large" data-action="home">Back to Setup</button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============================ QUIZ ============================ -->
+      <section class="screen" id="screen-quiz" data-screen="quiz" hidden>
+        <div class="countdown" id="countdown" tabindex="-1" hidden>
+          <div class="countdown-box">
+            <span class="countdown-label">Get ready</span>
+            <span class="countdown-value" id="countdown-value">3</span>
+          </div>
+        </div>
+
+        <div class="quiz-layout">
+          <div class="quiz-main">
+            <div class="quiz-statusbar">
+              <span class="type-badge" id="type-badge">Multiple Choice</span>
+              <div class="status-chip">
+                <span class="status-label">Question</span>
+                <span id="progress-text">1 / 40</span>
+              </div>
+              <div class="status-chip">
+                <span class="status-label" id="score-label">Score</span>
+                <span id="score-text">0</span>
+              </div>
+              <div class="status-chip timer-chip" id="timer-chip" hidden>
+                <span class="status-label">Time</span>
+                <span id="timer-text">0:00</span>
+              </div>
+              <div class="status-chip" id="answering-chip" hidden>
+                <span class="status-label">Answering</span>
+                <span id="answering-team-text">—</span>
+              </div>
+            </div>
+
+            <div class="progress-track" id="progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+              <span class="progress-fill" id="progress-fill"></span>
+            </div>
+
+            <article class="question-card" id="question-card">
+              <h2 class="question-text" id="question-text" tabindex="-1"></h2>
+              <div id="answer-area" class="answer-area"></div>
+              <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+              <p class="answer-hint" id="answer-hint" hidden></p>
+            </article>
+
+            <div class="quiz-controls">
+              <button type="button" class="btn btn-danger-outline" id="end-btn" data-action="end">End Quiz</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================== RESULTS ========================== -->
+      <section class="screen" id="screen-results" data-screen="results" hidden>
+        <div class="panel results-card">
+          <h2 id="results-title" tabindex="-1">Quiz Complete</h2>
+          <div class="results-summary" id="results-summary"></div>
+          <div class="results-leaderboard" id="results-leaderboard" hidden></div>
+          <div class="results-actions">
+            <button type="button" class="btn btn-primary" data-action="play-again">Play Again</button>
+            <button type="button" class="btn" id="retry-incorrect-btn" data-action="retry-incorrect" hidden>Retry Incorrect Only</button>
+            <button type="button" class="btn" data-action="home">Back to Setup</button>
+          </div>
+          <div class="review-filter" id="review-filter" role="group" aria-label="Filter answer review"></div>
+          <div class="review" id="review-list"></div>
+        </div>
+      </section>
+
+      <!-- ========================== SETTINGS ========================== -->
+      <section class="screen" id="screen-settings" data-screen="settings" hidden>
+        <div class="panel settings-panel">
+          <h2 id="settings-title" tabindex="-1">Settings</h2>
+          <p class="hint">Audio and answer options. Changes are saved automatically.</p>
+
+          <div class="settings-group">
+            <h3>Sound</h3>
+
+            <label class="toggle-row">
+              <input type="checkbox" id="sound-toggle" checked />
+              <span>Sound effects</span>
+            </label>
+
+            <label class="toggle-row">
+              <input type="checkbox" id="bgm-toggle" checked />
+              <span>Background music</span>
+            </label>
+
+            <div class="field" id="bgm-volume-field">
+              <span class="field-label" id="bgm-volume-label">Music volume</span>
+              <div class="slider-row">
+                <input type="range" id="bgm-volume" min="0" max="100" step="1" value="80"
+                  aria-labelledby="bgm-volume-label" />
+                <span class="slider-value" id="bgm-volume-value">80%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <h3>Questions</h3>
+
+            <label class="toggle-row">
+              <input type="checkbox" id="shuffle-choices" />
+              <span>Shuffle answer choices</span>
+            </label>
+          </div>
+
+          <div class="settings-actions">
+            <button type="button" class="btn btn-primary" data-action="close-settings">Back</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="confirm-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-message">
+      <h3 class="modal-title" id="confirm-title">Are you sure?</h3>
+      <p class="modal-message" id="confirm-message"></p>
+      <div class="modal-actions">
+        <button type="button" class="btn" id="confirm-cancel">Cancel</button>
+        <button type="button" class="btn btn-primary" id="confirm-ok">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="template-modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="template-title" aria-describedby="template-message">
+      <h3 class="modal-title" id="template-title">Download Template</h3>
+      <p class="modal-message" id="template-message">Choose how you want to save the question template CSV file.</p>
+      <div class="modal-actions template-actions">
+        <button type="button" class="btn" data-action="template-cancel">Cancel</button>
+        <button type="button" class="btn" data-action="template-open">Open</button>
+        <button type="button" class="btn" data-action="template-save-as">Save As</button>
+        <button type="button" class="btn btn-primary" data-action="template-save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loaded in dependency order: data, helpers, models, controller. -->
+  <script src="js/questions.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/question.js"></script>
+  <script src="js/importer.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/team.js"></script>
+  <script src="js/scoreboard.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
