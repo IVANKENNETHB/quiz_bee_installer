@@ -78,6 +78,10 @@ class QuizApp {
     this.previousScreen = "home";
     this.timerPausedForSettings = false;
 
+    // Authentication gates the whole app. False until a user has registered
+    // or signed in during this session.
+    this.authenticated = false;
+
     // Sound effects (see js/sound.js). Mirrored on the Home toggle.
     this.soundEnabled = true;
     // Background music. Controlled by the Home toggle + volume slider.
@@ -112,7 +116,9 @@ class QuizApp {
         lobby: byId("screen-lobby"),
         quiz: byId("screen-quiz"),
         results: byId("screen-results"),
-        settings: byId("screen-settings")
+        settings: byId("screen-settings"),
+        login: byId("screen-login"),
+        register: byId("screen-register")
       },
       // Home
       modeGroup: byId("mode-group"),
@@ -165,6 +171,14 @@ class QuizApp {
       // Settings
       settingsOpen: byId("settings-open"),
       settingsTitle: byId("settings-title"),
+      // Authentication
+      loginUsername: byId("login-username"),
+      loginPassword: byId("login-password"),
+      loginError: byId("login-error"),
+      registerUsername: byId("register-username"),
+      registerPassword: byId("register-password"),
+      registerConfirmPassword: byId("register-confirm-password"),
+      registerError: byId("register-error"),
       // Results
       resultsTitle: byId("results-title"),
       resultsSummary: byId("results-summary"),
@@ -187,9 +201,12 @@ class QuizApp {
     this.renderTeamsDraft();
     this.bindEvents();
     this.applyMode("practice");
-    this.showScreen("home");
     this.setBgmVolume(this.bgmVolume);
     this.setBgmEnabled(this.dom.bgmToggle ? this.dom.bgmToggle.checked : true);
+
+    // Decide between the sign-in and registration screen once the backend
+    // is reachable. Without the Tauri shell the app simply starts.
+    void this.startAuthentication();
   }
 
   bindEvents() {
@@ -302,6 +319,29 @@ class QuizApp {
       });
     }
 
+    // Pressing Enter in the authentication password field submits the form.
+    const passwordInputs = [
+      this.dom.loginPassword,
+      this.dom.registerPassword,
+      this.dom.registerConfirmPassword
+    ];
+
+    passwordInputs.forEach((input) => {
+      if (!input) {
+        return;
+      }
+
+      input.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") {
+          return;
+        }
+
+        event.preventDefault();
+        const isLogin = this.isScreenActive("login");
+        this.submitCredentials(isLogin ? "login" : "register");
+      });
+    });
+
     // File inputs do not emit delegated clicks, so bind directly.
     this.dom.importFile.addEventListener("change", (event) => {
       const file = event.target.files && event.target.files[0];
@@ -408,6 +448,14 @@ class QuizApp {
 
       case "close-settings":
         this.closeSettings();
+        break;
+
+      case "login":
+        this.signIn();
+        break;
+
+      case "register":
+        this.registerAccount();
         break;
 
       default:
@@ -556,6 +604,132 @@ class QuizApp {
 
     this.timerPausedForSettings = false;
     Sound.play("select");
+  }
+
+  /* ===================== Authentication ===================== */
+
+  /** Minimum length a new password must have (see submitCredentials). */
+  static get MIN_PASSWORD_LENGTH() {
+    return 6;
+  }
+
+  /**
+   * Decides which authentication screen to show. Without the Tauri shell
+   * (tests, plain browser) the app simply starts. With it, a fresh install
+   * without any registered user gets the registration screen; afterwards the
+   * sign-in screen is shown.
+   */
+  async startAuthentication() {
+    if (!window.QuizApi || !QuizApi.isAvailable()) {
+      this.showScreen("home");
+      return;
+    }
+
+    try {
+      const registered = await QuizApi.hasUsers();
+
+      if (!registered) {
+        this.showScreen("register");
+        return;
+      }
+
+      this.showScreen("login");
+    } catch (error) {
+      console.warn("Could not check registered users:", error);
+      this.showScreen("login");
+    }
+  }
+
+  /** Signs the user in and unlocks the rest of the app. */
+  async signIn() {
+    await this.submitCredentials("login");
+  }
+
+  /** Registers the first user account and unlocks the rest of the app. */
+  async registerAccount() {
+    await this.submitCredentials("register");
+  }
+
+  /**
+   * Shared body of sign-in and registration. On success the app is unlocked.
+   * Signing in shows the home screen. Registering shows the sign-in screen
+   * instead, with the new username already filled in, so the admin can sign
+   * in with one more click.
+   */
+  async submitCredentials(action) {
+    const isLogin = action === "login";
+    const usernameEl = isLogin
+      ? this.dom.loginUsername
+      : this.dom.registerUsername;
+    const passwordEl = isLogin
+      ? this.dom.loginPassword
+      : this.dom.registerPassword;
+    const confirmEl = isLogin ? null : this.dom.registerConfirmPassword;
+    const errorEl = isLogin ? this.dom.loginError : this.dom.registerError;
+    const username = usernameEl.value.trim();
+    const password = passwordEl.value;
+
+    errorEl.hidden = true;
+    errorEl.textContent = "";
+
+    if (username.length === 0) {
+      this.showAuthError(errorEl, "Please type a username.");
+      return;
+    }
+
+    if (password.length === 0) {
+      this.showAuthError(errorEl, "Please type a password.");
+      return;
+    }
+
+    if (!isLogin) {
+      const confirm = confirmEl ? confirmEl.value : "";
+
+      if (confirm !== password) {
+        this.showAuthError(errorEl, "Passwords do not match.");
+        return;
+      }
+    }
+
+    if (password.length < QuizApp.MIN_PASSWORD_LENGTH) {
+      this.showAuthError(
+        errorEl,
+        `Password must be at least ${QuizApp.MIN_PASSWORD_LENGTH} characters.`
+      );
+      return;
+    }
+
+    try {
+      if (isLogin) {
+        await QuizApi.login(username, password);
+        this.showScreen("home");
+      } else {
+        await QuizApi.register(username, password);
+
+        // Offer one more click to sign in with the account just created.
+        this.dom.loginUsername.value = username;
+        this.showScreen("login");
+      }
+
+      this.authenticated = true;
+    } catch (error) {
+      this.showAuthError(errorEl, messageOf(error));
+    }
+  }
+
+  /** Reports a rejected login or registration as an inline message. */
+  showAuthError(element, message) {
+    element.textContent = message || "Something went wrong.";
+    element.hidden = false;
+  }
+
+  /** Normalizes a rejected command promise into a human readable message. */
+  messageOf(error) {
+    if (error && error.message) {
+      return error.message;
+    }
+
+    return String(error);
   }
 
   applyMode(mode) {

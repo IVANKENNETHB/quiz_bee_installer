@@ -1,11 +1,24 @@
 use crate::db;
 use crate::models::{Question, Settings, Stats, Team};
+use argon2::{Argon2, PasswordHasher};
+use argon2::password_hash::SaltString;
 use rusqlite::Connection;
 use std::sync::Mutex;
 use tauri::State;
 
 pub struct AppState {
     pub conn: Mutex<Connection>,
+}
+
+/// Hashes a plain-text password with Argon2id so the database only ever
+/// stores a digest.
+fn hash_password(password: &str) -> Result<String, String> {
+    let salt = SaltString::generate(&mut rand::rngs::OsRng);
+    let hashed = Argon2::default()
+        .hash_password(password.as_bytes(), &salt)
+        .map_err(|error| format!("could not hash password: {error}"))?;
+
+    Ok(hashed.to_string())
 }
 
 /// Returns every question (built-in + imported).
@@ -122,6 +135,48 @@ pub fn get_settings(state: State<'_, AppState>) -> Result<Settings, String> {
 pub fn set_setting(state: State<'_, AppState>, key: String, value: String) -> Result<(), String> {
     let conn = state.conn.lock().map_err(|e| e.to_string())?;
     db::set_setting(&conn, &key, &value).map_err(|e| e.to_string())
+}
+
+/// True when at least one user is registered. Used to decide whether the app
+/// should show the registration or sign-in screen on startup.
+#[tauri::command]
+pub fn has_users(state: State<'_, AppState>) -> Result<bool, String> {
+    let conn = state.conn.lock().map_err(|e| e.to_string())?;
+
+    db::has_users(&conn).map_err(|e| e.to_string())
+}
+
+/// Registers the first user account.
+#[tauri::command]
+pub fn register(
+    state: State<'_, AppState>,
+    username: String,
+    password: String,
+) -> Result<(), String> {
+    let conn = state.conn.lock().map_err(|e| e.to_string())?;
+    let password_hash = hash_password(&password).map_err(|e| e.to_string())?;
+
+    db::create_user(&conn, &username, &password_hash).map_err(|e| e.to_string())?;
+    Ok(())
+}
+
+/// Signs a user in. Fails when the username or the password is wrong.
+#[tauri::command]
+pub fn login(
+    state: State<'_, AppState>,
+    username: String,
+    password: String,
+) -> Result<(), String> {
+    let conn = state.conn.lock().map_err(|e| e.to_string())?;
+    let password_hash = hash_password(&password).map_err(|e| e.to_string())?;
+
+    let matches = db::verify_user(&conn, &username, &password_hash).map_err(|e| e.to_string())?;
+
+    if !matches {
+        return Err("Invalid username or password.".to_string());
+    }
+
+    Ok(())
 }
 
 /// Inserts a team into the database, or returns the existing one if the name is taken.

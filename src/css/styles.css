@@ -458,7 +458,8 @@ p {
 .option-btn:focus-visible,
 .answer-input:focus-visible,
 select:focus-visible,
-input[type="text"]:focus-visible {
+input[type="text"]:focus-visible,
+input[type="password"]:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
@@ -1644,4 +1645,47 @@ textarea::placeholder {
   .modal {
     animation: none;
   }
+}
+
+/* ==========================================================================
+   Authentication screen
+   ========================================================================== */
+
+.auth-layout {
+  display: flex;
+  justify-content: center;
+}
+
+.auth-panel {
+  width: min(100%, 420px);
+}
+
+/* Text and password inputs match the theme and keep a visible focus ring,
+   which the generic focus rule above does not cover for passwords. */
+.auth-panel input[type="text"],
+.auth-panel input[type="password"] {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.auth-panel input[type="text"]:focus-visible,
+.auth-panel input[type="password"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.auth-error {
+  margin: 0.8rem 0 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(239, 68, 68, 0.55);
+  background: rgba(239, 68, 68, 0.1);
+  color: #fecaca;
+  font-size: 0.88rem;
 }

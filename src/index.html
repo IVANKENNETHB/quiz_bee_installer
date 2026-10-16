@@ -304,6 +304,57 @@
           </div>
         </div>
       </section>
+
+      <!-- ============================ LOGIN / REGISTER ============================ -->
+      <section class="screen" id="screen-login" data-screen="login" hidden>
+        <div class="auth-layout">
+          <div class="panel auth-panel">
+            <h2>Sign in</h2>
+            <p class="hint">Welcome back. Sign in to continue.</p>
+
+            <div class="field">
+              <label class="field-label" for="login-username">Username</label>
+              <input type="text" id="login-username" autocomplete="username" maxlength="64" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="login-password">Password</label>
+              <input type="password" id="login-password" autocomplete="current-password" />
+            </div>
+
+            <button type="button" class="btn btn-primary btn-large" data-action="login">Sign In</button>
+            <p class="auth-error" id="login-error" hidden></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen" id="screen-register" data-screen="register" hidden>
+        <div class="auth-layout">
+          <div class="panel auth-panel">
+            <h2>Create account</h2>
+            <p class="hint">This is the first launch, so create the admin account for this install.</p>
+            <p class="hint">The example values are already filled in — edit them to use your own. Passwords need at least 6 characters.</p>
+
+            <div class="field">
+              <label class="field-label" for="register-username">Username</label>
+              <input type="text" id="register-username" value="admin" autocomplete="username" maxlength="64" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="register-password">Password</label>
+              <input type="password" id="register-password" value="admin123" autocomplete="new-password" />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="register-confirm-password">Confirm password</label>
+              <input type="password" id="register-confirm-password" value="admin123" autocomplete="new-password" />
+            </div>
+
+            <button type="button" class="btn btn-primary btn-large" data-action="register">Register</button>
+            <p class="auth-error" id="register-error" hidden></p>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 

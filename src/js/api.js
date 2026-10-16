@@ -76,6 +76,21 @@ window.QuizApi = {
     return this._call("set_setting", { key, value: String(value) });
   },
 
+  /** True when at least one user is registered (backend only). */
+  hasUsers() {
+    return this._call("has_users");
+  },
+
+  /** Registers the first user account. */
+  register(username, password) {
+    return this._call("register", { username, password });
+  },
+
+  /** Signs a user in. */
+  login(username, password) {
+    return this._call("login", { username, password });
+  },
+
   getTeams() {
     return this._call("get_teams");
   },

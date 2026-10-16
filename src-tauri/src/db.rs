@@ -45,6 +45,13 @@ pub fn init_schema(conn: &Connection) -> rusqlite::Result<()> {
             value TEXT NOT NULL
         );
 
+        CREATE TABLE IF NOT EXISTS users (
+            id            INTEGER PRIMARY KEY AUTOINCREMENT,
+            username      TEXT NOT NULL UNIQUE,
+            password_hash TEXT NOT NULL,
+            created_at    TEXT NOT NULL
+        );
+
         CREATE TABLE IF NOT EXISTS teams (
             id          INTEGER PRIMARY KEY AUTOINCREMENT,
             name        TEXT NOT NULL UNIQUE,
@@ -309,6 +316,38 @@ pub fn get_stats(conn: &Connection) -> rusqlite::Result<(i64, i64)> {
 /// Deletes every recorded attempt.
 pub fn reset_attempts(conn: &Connection) -> rusqlite::Result<usize> {
     conn.execute("DELETE FROM attempts", [])
+}
+
+/// True when at least one user is registered. Used to decide between the
+/// registration and sign-in screens on startup.
+pub fn has_users(conn: &Connection) -> rusqlite::Result<bool> {
+    let count: i64 = conn.query_row("SELECT COUNT(*) FROM users", [], |row| row.get(0))?;
+
+    Ok(count > 0)
+}
+
+/// Inserts a user together with the password digest computed by the caller.
+pub fn create_user(conn: &Connection, username: &str, password_hash: &str) -> rusqlite::Result<()> {
+    conn.execute(
+        "INSERT INTO users (username, password_hash, created_at) VALUES (?1, ?2, datetime('now'))",
+        params![username, password_hash],
+    )?;
+
+    Ok(())
+}
+
+/// Compares a password digest against the stored one. Returns false when the
+/// username is unknown or when the password does not match.
+pub fn verify_user(conn: &Connection, username: &str, password_hash: &str) -> rusqlite::Result<bool> {
+    let stored: Option<String> = conn
+        .query_row(
+            "SELECT password_hash FROM users WHERE username = ?1",
+            params![username],
+            |row| row.get("password_hash"),
+        )
+        .optional()?;
+
+    Ok(stored.as_deref() == Some(password_hash))
 }
 
 #[cfg(test)]
@@ -621,5 +660,37 @@ mod tests {
 
         set_team_score(&conn, "Alpha", 3).unwrap();
         assert_eq!(get_teams(&conn).unwrap()[0].score, 3);
+    }
+
+    #[test]
+    fn has_users_reflects_registration() {
+        let conn = temp_db();
+
+        assert!(!has_users(&conn).unwrap());
+
+        create_user(&conn, "admin", "admin-hash").unwrap();
+        assert!(has_users(&conn).unwrap());
+
+        create_user(&conn, "teacher", "teacher-hash").unwrap();
+        assert!(has_users(&conn).unwrap());
+    }
+
+    #[test]
+    fn verify_user_accepts_only_the_matching_digest() {
+        let conn = temp_db();
+        create_user(&conn, "admin", "admin-hash").unwrap();
+
+        assert!(verify_user(&conn, "admin", "admin-hash").unwrap());
+        assert!(!verify_user(&conn, "admin", "teacher-hash").unwrap());
+        assert!(!verify_user(&conn, "guest", "admin-hash").unwrap());
+    }
+
+    #[test]
+    fn create_user_rejects_a_taken_username() {
+        let conn = temp_db();
+        create_user(&conn, "admin", "admin-hash").unwrap();
+
+        let error = create_user(&conn, "admin", "other-hash").unwrap_err();
+        assert!(error.to_string().contains("UNIQUE"));
     }
 }
